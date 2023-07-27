@@ -19,15 +19,16 @@ function isWeekend(day: DaysOfWeek): boolean {
     return false;
   }
 }
-
+isWeekend(DaysOfWeek.Monday);
+//----------------------------------------
 enum DaysOfWeekF {
-  Sunday,
-  Monday,
-  Tuesday,
-  Wednesday,
-  Thursday,
-  Friday,
-  Saturday,
+  Sunday = "Sunday",
+  Monday = "Monday",
+  Tuesday = "Tuesday",
+  Wednesday = "Wednesday",
+  Thursday = "Thursday",
+  Friday = "Friday",
+  Saturday = "Saturday",
 }
 type DayStatus = Record<DaysOfWeekF, boolean>;
 const dayStatus: DayStatus = {
@@ -39,8 +40,15 @@ const dayStatus: DayStatus = {
   [DaysOfWeekF.Friday]: false,
   [DaysOfWeekF.Saturday]: true,
 };
-function isWeekendF(day: DayStatus) {
-  console.log(day);
+function isWeekendF(dayStatus: DayStatus, day: DaysOfWeekF) {
+  console.log(dayStatus, day);
+  console.log(DaysOfWeekF[day]);
+  if (dayStatus[day]) {
+    console.log(` Today is ${day}. Weekend`);
+  } else {
+    console.log(` Today is ${day}. Working day`);
+  }
+  return dayStatus[day];
 }
-console.log(dayStatus);
-// isWeekendF(dayStatus[DaysOfWeekF.Sunday]);
+
+isWeekendF(dayStatus, DaysOfWeekF.Monday);
